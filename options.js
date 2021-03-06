@@ -23,8 +23,13 @@ function loadSettings() {
     let settings = ['btnName', 'urlTemplate'];
 
     chrome.storage.sync.get(settings, function (result) {
-        btnNameInput.value = result.btnName;
-        urlTemplateInput.value = result.urlTemplate;
+        if (result.btnName) {
+            btnNameInput.value = result.btnName;
+        }
+
+        if (result.urlTemplate) {
+            urlTemplateInput.value = result.urlTemplate;
+        }
     });
 }
 
