@@ -1,0 +1,27 @@
+{
+    "name": "GitHub branch to URL",
+    "description": "Add a link to a custom URL on GitHub pull request pages.",
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "permissions": [
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "512": "/images/logo512.png"
+        }
+    },
+    "icons": {
+        "512": "/images/logo512.png"
+    },
+    "options_page": "options.html",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://github.com/*/*/pull/*"
+            ],
+            "js": ["lib/jquery-3.6.0.min.js", "insertButton.js"]
+        }
+    ]
+}
