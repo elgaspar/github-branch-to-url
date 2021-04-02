@@ -2,6 +2,10 @@
 
 A Chrome extension that allows adding a custom URL link to GitHub pull request pages.
 
+- Use a custom URL template that contains the branch name.
+- Enabling the button in specific repositories only.
+- Set the button's name.
+
 ### Screenshots
 
 ![alt text](images/screenshot1.jpg "screenshot1")
