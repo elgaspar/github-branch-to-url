@@ -1,11 +1,14 @@
 $(document).ready(function(){
     chrome.storage.sync.get(['repositories', 'urlTemplate', 'btnName'], function (result) {
-        console.log(result);
         let repositories = result.repositories.split(',');
+
+        if (!result.urlTemplate) {
+            return;
+        }
 
         for (const repo of repositories){
             if (isRepoPage(repo)) {
-                let button = createButton(result.repositories, result.urlTemplate, result.btnName);
+                let button = createButton(result.urlTemplate, result.btnName);
                 addButtonToPage(button);
                 return;
             }
@@ -14,6 +17,10 @@ $(document).ready(function(){
 });
 
 function isRepoPage(repoName) {
+    if (!repoName) {
+        return false;
+    }
+
     let repoUrl = 'https://github.com/' + repoName;
 
     if (document.location.href.startsWith(repoUrl)) {
@@ -30,26 +37,15 @@ function createButton(urlTemplate, btnName) {
 
     button.html(btnName ? btnName : 'Branch URL');
 
-    if (!urlTemplate) {
-        setUninitializedHandler(button);
-        return button;
-    }
-
     if (!urlTemplate.startsWith('http://') && !urlTemplate.startsWith('https://')) {
         urlTemplate = 'http://' + urlTemplate;
     }
 
     let branchName = $('.js-clipboard-copy').attr('value');
-    button.attr('href', urlTemplate.replace('#', branchName));
+    button.attr('href', urlTemplate.replace('*', branchName));
     button.attr('target', '_blank');
 
     return button;
-}
-
-function setUninitializedHandler(element) {
-    element.on('click', function () {
-        alert('You haven\'t set a URL template.')
-    });
 }
 
 function addButtonToPage(button) {
