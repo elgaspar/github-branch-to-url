@@ -2,7 +2,7 @@
 
 A Chrome extension that allows adding a custom URL link to GitHub pull request pages.
 
-### Screenshot
+### Screenshots
 
 ![alt text](images/screenshot1.jpg "screenshot1")
 ![alt text](images/screenshot2.jpg "screenshot2")
