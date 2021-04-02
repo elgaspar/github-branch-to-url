@@ -1,5 +1,6 @@
-var btnNameInput = document.getElementById('btnName');
-var urlTemplateInput = document.getElementById('urlTemplate');
+var repositoriesInput = $('#repositories');
+var urlTemplateInput = $('#urlTemplate');
+var btnNameInput = $('#btnName');
 
 loadSettings();
 
@@ -9,8 +10,9 @@ $('#saveBtn').on('click', function(){
 
 function saveSettings() {
     let values = {
-        'btnName': btnNameInput.value,
-        'urlTemplate': urlTemplateInput.value
+        'repositories': repositoriesInput.val(),
+        'urlTemplate': urlTemplateInput.val(),
+        'btnName': btnNameInput.val()
     };
 
     chrome.storage.sync.set(values, function () {
@@ -20,15 +22,20 @@ function saveSettings() {
 }
 
 function loadSettings() {
-    let settings = ['btnName', 'urlTemplate'];
+    let settings = ['repositories', 'urlTemplate', 'btnName'];
 
     chrome.storage.sync.get(settings, function (result) {
-        if (result.btnName) {
-            btnNameInput.value = result.btnName;
+
+        if (result.repositories) {
+            repositoriesInput.val(result.repositories);
         }
 
         if (result.urlTemplate) {
-            urlTemplateInput.value = result.urlTemplate;
+            urlTemplateInput.val(result.urlTemplate);
+        }
+
+        if (result.btnName) {
+            btnNameInput.val(result.btnName);
         }
     });
 }

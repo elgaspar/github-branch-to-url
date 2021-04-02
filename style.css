@@ -1,7 +1,6 @@
-body {
+.main-container {
     margin-left: auto;
     margin-right: auto;
-    padding: 10px;
     width: max-content;
     color: #505050;
 }
@@ -51,7 +50,7 @@ button:hover {
 }
 
 .optionsContainer {
-    width: 200px;
+    width: 100%;
     margin-top: 40px;
 }
 
@@ -69,7 +68,7 @@ input {
     box-shadow: none;
     padding: 5px;
     margin-top: 10px;
-    width: 200px;
+    width: 220px;
 }
 
 .description {

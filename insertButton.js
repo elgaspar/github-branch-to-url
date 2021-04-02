@@ -1,10 +1,29 @@
-chrome.storage.sync.get(['btnName', 'urlTemplate'], function (result) {
-    let button = createButton(result.btnName, result.urlTemplate);
-    addButtonToPage(button);
+$(document).ready(function(){
+    chrome.storage.sync.get(['repositories', 'urlTemplate', 'btnName'], function (result) {
+        console.log(result);
+        let repositories = result.repositories.split(',');
+
+        for (const repo of repositories){
+            if (isRepoPage(repo)) {
+                let button = createButton(result.repositories, result.urlTemplate, result.btnName);
+                addButtonToPage(button);
+                return;
+            }
+        }
+    });
 });
 
+function isRepoPage(repoName) {
+    let repoUrl = 'https://github.com/' + repoName;
 
-function createButton(btnName, urlTemplate) {
+    if (document.location.href.startsWith(repoUrl)) {
+        return true;
+    }
+
+    return false;
+}
+
+function createButton(urlTemplate, btnName) {
     let button = $('<a></a>');
     button.addClass('btn btn-sm d-inline-block float-none m-0 mr-md-0');
     button.attr('style', 'margin-right: 4px !important');
