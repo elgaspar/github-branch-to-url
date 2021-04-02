@@ -1,6 +1,6 @@
 {
     "name": "GitHub branch to URL",
-    "description": "Add a link to a custom URL on GitHub pull request pages.",
+    "description": "Add a custom URL link to GitHub pull request pages.",
     "version": "1.0.0",
     "manifest_version": 3,
     "permissions": [
