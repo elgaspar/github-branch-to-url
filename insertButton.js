@@ -41,7 +41,7 @@ function createButton(urlTemplate, btnName) {
         urlTemplate = 'http://' + urlTemplate;
     }
 
-    let branchName = $('.js-clipboard-copy').attr('value');
+    let branchName = $('.js-copy-branch').attr('value');
     button.attr('href', urlTemplate.replace('*', branchName));
     button.attr('target', '_blank');
 
